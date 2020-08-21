@@ -1,0 +1,62 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Albums.Models.User>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *,ReflectionIT.Mvc.Paging
+
+@{
+    int counter = 1;
+}
+
+@if (!Model.Any())
+{
+    <h1>There is no users.</h1>
+}
+else
+{
+    <form method="get">
+        <div class="input-group">
+            <input class="form-control" type="text" id="Search" placeholder="Search" />
+        </div>
+    </form>
+
+    <table class="table table-striped text-center">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Username</th>
+                <th>Website</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="Search">
+                    <td>
+                        @counter
+                    </td>
+                    <td>
+                        @item.Username
+                    </td>
+                    <td>
+                        <a href="@item.Website">@item.Website</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="Users/Edit/@item.Id">Edit</a>
+                        <a class="btn btn-primary" href="Albums/Index/@item.Id">Album</a>
+                    </td>
+                </tr>
+                counter += 1;
+            }
+        </tbody>
+    </table>
+}
+
+<nav aria-label="Users" id="navBar">
+    <vc:pager paging-list="@Model"/>
+</nav>
+
+<style>
+    #navBar li {
+        padding: 15px;
+    }
+</style>

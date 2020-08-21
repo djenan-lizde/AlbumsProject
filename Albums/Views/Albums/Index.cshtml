@@ -1,0 +1,48 @@
+﻿@model List<Albums.Models.Album>
+
+@{
+    int counter = 1;
+}
+
+<h3>Album titles</h3>
+
+@if (!Model.Any())
+{
+    <h1>There is no albums.</h1>
+}
+else
+{
+    <form method="get">
+        <div class="input-group">
+            <input class="form-control" type="text" id="Search" placeholder="Search" />
+        </div>
+    </form>
+
+    <table class="table table-striped text-center">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Album title</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="Search">
+                    <td>
+                        @counter
+                    </td>
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="/Albums/Edit/@item.Id">Edit</a>
+                        <a class="btn btn-primary" href="/Albums/Details/@item.Id">Details</a>
+                    </td>
+                </tr>
+                counter += 1;
+            }
+        </tbody>
+    </table>
+}

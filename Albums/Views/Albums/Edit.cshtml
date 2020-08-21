@@ -1,0 +1,13 @@
+﻿@model Albums.Models.Album
+
+<div>
+    <form>
+        <div class="form-group">
+            <label for="Title">Title</label>
+            <input class="form-control" placeholder="Enter new title" asp-for="@Model.Title">
+        </div>
+        <input type="hidden" asp-for="@Model.Id" />
+        <input type="hidden" asp-for="@Model.UserId" />
+        <button class="btn btn-primary" asp-action="Save" asp-controller="Albums">Save</button>
+    </form>
+</div>
